@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="content-section">
+  <h3>Book Search</h3>
+  <p class='text-muted'>You can search by author, title, subject, or any
+    infomation related to your book. </p>
+  <form action="/search" method="POST">
+    <input type="text" name="inputValue" class="myInput" id="searchInputID"
+      placeholder="Search Input Here..."
+      title="Type in author, title, subject...">
+    <a><button class="searchButton" id="searchButtonID" type="submit">Search</button></a>
+  </form>
+  <br> <br>
+</div>
+<hr>
+<h2 class="showDate">Recommend Books of {{ date }}</h2>
+<div align = "center"><p>The book will cost $0.5 per day. There will be no return $ if you return it earlier. The over due cost will be $5 per day!</p>
+</div>
+  <hr>
+<div class="row">
+  {% for ro in book_list %}
+    <div class="col-md-3">
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{ ro.author }}</a>
+            <small class="text-muted ml-2">{{ ro.public_year }}</small>
+          </div>
+          <div align="center">
+            <a href="{{ url_for('display', title=ro.title)}}"><p class="article-content"> <img src="{{ ro.img }}" width="130" height="200"></p></a>
+            <div class="btn-group">
+              <a href="{{ url_for('display', title=ro.title)}}"><button
+                type="button" class="btn btn-primary">Detail</button></a>
+            </div>
+            <div class="btn-group">
+              <a href="{{ url_for('rent_book', title=ro.title )}}"><button
+                  type="button" class="btn btn-primary">Borrow</button></a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  {% endfor %}
+</div>
+{% endblock content %}

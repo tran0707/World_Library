@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+        <img src="../static/default.png" width="150" height ="150">
+        <h3>User_Name: {{ current_user.username }}</h3>
+        <h3>Email: {{current_user.email}}</h3>
+        <h3>User ID in Database: {{ current_user.id}}</h3>
+    </div>
+{% endblock content %}

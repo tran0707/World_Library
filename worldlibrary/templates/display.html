@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <hr>
+    <h2 class="showDate">Book Detail</h2>
+    <hr>
+    {% if click_book %}
+        <div class="detail-display">
+            <img src="{{ click_book[0].img.replace('-M', '-L') }}" width="322" height="500">
+            <br> <br>
+            <div>
+                <a href="{{ url_for('rent_book', title=click_book[0].title )}}"><button
+                    type="button" class="btn btn-primary btn-lg">Borrow Now</button></a>
+                </div>
+            <br><br>
+            <div class="left-display">
+                <div><span class="bold-display">Title:</span> {{ click_book[0].title}}</div>
+                <div><span class="bold-display">Author:</span> {{ click_book[0].author }}</div>
+                <div><span class="bold-display">Subject:</span> {{ click_book[0].subject}}</div>
+                <div><span class="bold-display">Contributor:</span> {{ click_book[0].contributor}}</div>
+                <div><span class="bold-display">Publisher:</span> {{ click_book[0].publisher}}</div>
+                <div><span class="bold-display">Publish Places:</span> {{ click_book[0].public_place}}</div>
+                <div><span class="bold-display">Publish Year:</span> {{ click_book[0].public_year}}</div>
+                <div><span class="bold-display">ISBN:</span> {{ click_book[0].isbn}}</div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock content %}

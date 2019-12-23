@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+    <hr>
+    <h2 class="showDate">Book Search Result</h2>
+    <hr>
+    <div class="row">
+        {% for ro in book_list %}
+            <div class="col-md-3">
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <a class="mr-2" href="#">{{ ro.author }}</a>
+                            <small class="text-muted ml-2">{{ ro.public_year }}</small>
+                        </div>
+                        <div align="center">
+                            <a href="{{ url_for('display', title=ro.title)}}"><p class="article-content"> <img src="{{ ro.img }}" width="130" height="200"></p></a>
+                            <div class="btn-group">
+                                <a href="{{ url_for('display', title=ro.title)}}"><button
+                                    type="button" class="btn btn-primary">Detail</button></a>
+                            </div>
+                            <div class="btn-group">
+                                <a href="{{ url_for('rent_book', title=ro.title )}}"><button
+                                    type="button" class="btn btn-primary">Borrow</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

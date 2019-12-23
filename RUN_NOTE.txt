@@ -1,0 +1,46 @@
+# CREATE LIBREAY ENV and install requirements command
+$ virtualenv -p python3 Library_ENV; source Library_ENV/bin/activate; pip3 install -r requirements.txt
+
+
+#For NEW DB FILE
+run $python3
+-> $ from worldlibrary import db 
+-> $ db.create_all()
+
+#IF NEW DB, ADD THIS INTO /home hin route.py for 16 default books
+    # Use to add into Library DB
+    # For Romance Subject
+    romance = requests.get('http://openlibrary.org/search.json?subject=romance')
+    romance_books = romance.json()['docs']
+    book_list_romance = getBookInfo(4, romance_books)
+    for book in book_list_romance:
+        book_home = Library(title = book['title'] , author= book['author'] , public_year = book['public_year'], img = book['img'], contributor = book['contributor'], subject= book['subject'], public_place = book['public_place'], publisher = book['publisher'], isbn = book['isbn'])
+        db.session.add(book_home)
+        db.session.commit()
+
+    # For Kids Subject
+    kids = requests.get('http://openlibrary.org/search.json?subject=kids')
+    kids_books = kids.json()['docs']
+    book_list_kids = getBookInfo(4, kids_books)
+    for book in book_list_kids:
+        book_home = Library(title = book['title'] , author= book['author'] , public_year = book['public_year'], img = book['img'], contributor = book['contributor'], subject= book['subject'], public_place = book['public_place'], publisher = book['publisher'], isbn = book['isbn'])
+        db.session.add(book_home)
+        db.session.commit()
+
+    # For Thrillers Subject
+    thrillers = requests.get('http://openlibrary.org/search.json?subject=thrillers')
+    thrillers_books = thrillers.json()['docs']
+    book_list_thrillers = getBookInfo(4, thrillers_books)
+    for book in book_list_thrillers:
+        book_home = Library(title = book['title'] , author= book['author'] , public_year = book['public_year'], img = book['img'], contributor = book['contributor'], subject= book['subject'], public_place = book['public_place'], publisher = book['publisher'], isbn = book['isbn'])
+        db.session.add(book_home)
+        db.session.commit()
+
+    # For Textbooks Subject
+    textbooks = requests.get('http://openlibrary.org/search.json?subject=textbooks')
+    textbooks_books = textbooks.json()['docs']
+    book_list_textbooks = getBookInfo(4, textbooks_books)
+    for book in book_list_textbooks:
+        book_home = Library(title = book['title'] , author= book['author'] , public_year = book['public_year'], img = book['img'], contributor = book['contributor'], subject= book['subject'], public_place = book['public_place'], publisher = book['publisher'], isbn = book['isbn'])
+        db.session.add(book_home)
+        db.session.commit()

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+    <hr>
+    <h2 class="showDate">Your Rental Information</h2>
+    <hr>
+    <div class="grid">
+    <article class="row">
+            <h1> Current Rent List</h1> 
+        </article>
+    <div class="row">
+    {% for book in user_rent_list %}
+        <!-- <p> {{ book.title }} </p> -->
+    <div class="col-md-3">
+            <article class="media content-section">
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ book.author }}</a>
+                    <small class="text-muted ml-2">{{ book.public_year }}</small>
+                </div>
+                <div align="center">
+                    <p class="article-content"> <img src="{{ book.img }}" width="130" height="200"></p>
+                    <div class="article-metadata">
+                    <p>Start Date {{ book.start_time }}</p>
+                    <p>End Date {{ book.end_time }}</p>
+                    <p>Cost ${{ book.cost }}</p>
+                    <p>Over Due Cost will be ${{ book.overdue_rate }} per day</p>
+                    </div>
+                    <div>
+                        <a href="{{ url_for('returnBook', title=book.title )}}"><button
+                                type="button" class="btn btn-primary btn-lg">Return</button></a>
+                    </div>
+
+                </div>
+                
+                </div>
+            </article>
+            </div>        
+    {% endfor %}
+    </div>
+    <article class="row">
+       <h1> Returned List</h1> 
+    </article>
+    
+    <div class="row">
+    {% for book in user_return_list %}
+        <!-- <p> {{ book.title }} </p> -->
+    <div class="col-md-3">
+            <article class="media content-section">
+                <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ book.author }}</a>
+                    <small class="text-muted ml-2">{{ book.public_year }}</small>
+                </div>
+                <div align="center">
+                    <p class="article-content"> <img src="{{ book.img }}" width="130" height="200"></p>
+                    <div class="article-metadata">
+                    <p>Start Date {{ book.start_time }}</p>
+                    <p>End Date {{ book.end_time }}</p>
+                    <p>Return Date {{ book.return_time }}</p>
+                    <p>Cost ${{ book.cost }}</p>
+                    <p>Over Due Cost ${{ book.overdue_cost }}</p>
+                    </div>
+                    <div>
+                        <a href="{{ url_for('rent_book', title=book.title )}}"><button
+                                type="button" class="btn btn-primary btn-lg">Borrow Again</button></a>
+                    </div>
+
+                </div>
+                
+                </div>
+            </article>
+            </div>        
+    {% endfor %}
+    </div>
+    </div>
+    </div>
+{% endblock content %}
